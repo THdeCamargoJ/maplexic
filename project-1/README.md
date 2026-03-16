@@ -12,7 +12,7 @@ A **Maplexic** é uma Domain Specific Language (DSL) voltada para a criação pr
 
 ## Slides
 
-[Maplexic](https://docs.google.com/presentation/d/1MGUOaxp1wWTAmv9TGyx4686VhUdchtAk_0b9NkTgfwc/edit?slide=id.g3cffa34a004_2_171#slide=id.g3cffa34a004_2_171)
+[Maplexic](https://github.com/THdeCamargoJ/maplexic/blob/main/project-1/Slides%20Maplexic.pdf)
 
 ## Sintaxe da Linguagem na Forma de Tutorial
 
