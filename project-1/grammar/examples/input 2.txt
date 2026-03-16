@@ -1,0 +1,22 @@
+map AdventureWorld {
+  seed: 1024,
+  // Area para o deserto
+  area Deserto {
+    color: #EDC9AF,
+    pos: (0, 0),
+
+    obj Oasis {
+      pos: (45, 120),
+      size: { width: 10 %, height: 10 % },
+      img: { url: url("oasis_sprite.png") }
+    },
+
+    obj Piramide {
+      shape: "square",
+      procedural: {
+        noise: "white-noise",
+        octaves: 2
+      }
+    }
+  }
+}
