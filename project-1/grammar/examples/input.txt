@@ -1,0 +1,14 @@
+map Dungeon {
+  size: { width: 100px, height: 80px },
+  obj SalaPrincipal {
+    size: { width: 20px, height: 15px },
+    pos: (40, 30),
+    obj Porta {
+      size: { width: 1px, height: 2px },
+      pos: (0, 0)
+    },
+    obj Cofre {
+      pos: (5, 5)
+    }
+  }
+}
