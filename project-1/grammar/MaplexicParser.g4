@@ -2,48 +2,63 @@ parser grammar MaplexicParser;
 
 options { tokenVocab = MaplexicLexer; }
 
-map: MAP ID LBRACE defList? (COMMA propDeclList)? RBRACE EOF 
-    | MAP ID LBRACE propDeclList? (COMMA defList)? RBRACE EOF ;
+map: BEGIN OF MAP id NEWLINE (definable_body NEWLINE)* END OF MAP .*? EOF ;
 
-definable: OBJECT
-    | AREA ;
+definable: STRUCTURE
+    | CONTINENT
+    | ISLAND
+    | REGION
+    | BIOME ;
 
-def: definable ID LBRACE defList? (COMMA propDeclList)? RBRACE
-    | definable ID LBRACE propDeclList? (COMMA defList)? RBRACE ;
+definable_decl: BEGIN OF definable id NEWLINE (definable_body NEWLINE)* END OF definable ;
 
-defList: def (COMMA def)* ;
+definable_body: prop_decl | definable_decl ;
 
-simpleProp: NOISE
-    | ALGORITHM
+simple_prop: SPACING
+    | CONTINENTS
+    | NOISE
     | OCTAVES
-    | LACUNARITY
-    | SHAPE
     | SEED
-    | WIDTH
+    | LACUNARITY
     | ORIENTATION
-    | HEIGHT ;
+    | SHAPE
+    | WIDTH
+    | HEIGHT
+    | COLOR
+    | IMG
+    | ICON
+    | TEXTURE
+    | ISLANDS
+    | RIVERS
+    | LAKES ;
 
-composedProp: PROCEDURAL 
-    | SIZE 
-    | IMG ;
-
-rgb: RGB LPAR NUMBER COMMA NUMBER COMMA NUMBER RPAR ;
-
-url: URL LPAR STRING RPAR ;
-
-specificPropDecl: COLOR COLON rgb
-    | COLOR COLON HEXCOLOR 
-    | URL COLON url 
-    | POS COLON LPAR NUMBER COMMA NUMBER RPAR ;
+composed_prop: CANVAS
+    | CONTINENTS
+    | STRUCTURES
+    | REGIONS
+    | PROCEDURAL
+    | ICON 
+    | LOCATION
+    | IMG
+    | SIZE ;
 
 unity: PIXEL
-    | PERCENT ;
+    | PERCENT
+    | METER
+    | KILOMETER
+    | ANGLE ;
 
-propDecl: simpleProp COLON STRING 
-    | simpleProp COLON NUMBER 
-    | simpleProp COLON NUMBER unity
-    | specificPropDecl
-    | composedProp COLON LBRACE propDeclList? RBRACE ;
+number: (INT | FLOAT) unity? ;
 
-propDeclList: propDecl (COMMA propDecl)* ;
+bool: TRUE | FALSE ;
 
+simple_prop_decl: simple_prop COLON ( STRING | bool )
+    | simple_prop COLON ( HEXCOLOR | RGBCOLOR | URL ) 
+    | simple_prop COLON number
+    | simple_prop COLON id ;
+
+composed_prop_decl: composed_prop LPAREN (NEWLINE prop_decl | prop_decl NEWLINE)* RPAREN ;
+
+prop_decl: simple_prop_decl | composed_prop_decl ;
+
+id: ID* ID ;
