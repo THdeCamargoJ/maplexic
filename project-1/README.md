@@ -11,53 +11,137 @@ A simplicidade da Maplexic deve se expandir também para as complexidades por tr
 
 ## Slides
 
-[Maplexic](https://github.com/THdeCamargoJ/maplexic/blob/main/project-1/assets/Slides%20Maplexic.pdf)
+[Maplexic](https://github.com/THdeCamargoJ/maplexic/blob/draft/remake-after-feedback/project-1/assets/Slides%20Maplexic.pdf)
 
 ## Sintaxe da Linguagem na Forma de Tutorial
 
 ### 1. Criando um mapa
 
-Em Maplexic a definição de um mapa começa com `INÍCIO DO MAPA <id>` ou `BEGIN OF MAP <id>` e termina com `FIM DO MAPA` ou `END OF MAP`. Tudo referente ao mapa deve estar dentro desta estrutura; tudo após o fim do mapa será ignorado.
+Em Maplexic, a definição de um mapa começa com `INÍCIO DE MAPA <id>` ou `BEGIN OF MAP <id>` e termina com `FIM DE MAPA` ou `END OF MAP`. Tudo referente ao mapa deve estar dentro desta estrutura; tudo após o fim do mapa será ignorado.
 
 ```
-BEGIN OF MAP My Beautiful Map
-
+BEGIN OF MAP My_Beautiful_Map
+    // O conteúdo do mapa vai aqui
 END OF MAP
 ```
 
-Mapas podem ser 
+Mapas podem ser populados com propriedades simples, propriedades compostas (agrupadas) e definições de elementos geográficos, sempre separados por quebras de linha.
+
+### 2. Tipos de Dados e Unidades
+
+Antes de definirmos as estruturas, é importante notar que o Maplexic suporta diferentes tipos de valores para suas propriedades:
+
+    Booleanos: V, VERDADEIRO, T, TRUE ou F, FALSO, FALSE.
+
+    Números e Unidades: Números inteiros ou decimais podem vir acompanhados de unidades como px (pixels), % (porcentagem), m (metros), km (quilômetros) e ° / deg / ang (ângulos).
+
+    Textos: Devem estar entre aspas ("texto" ou 'texto').
 
 ### 3. Definindo regiões e estruturas
 
+A linguagem permite criar blocos para diferentes elementos geográficos usando as palavras-chave `ESTRUTURA (STRUCTURE)`, `CONTINENTE (CONTINENT)`, `ILHA (ISLAND)`, `REGIÃO (REGION)` ou `BIOMA (BIOME)`.
+A sintaxe segue o mesmo padrão de abertura e fechamento do mapa:
 
+```
+INÍCIO DE CONTINENTE Pangea
+    ORIENTAÇÃO: NORTE
+FIM DE CONTINENTE
+
+BEGIN OF BIOME Floresta_Negra
+    ALTURA: 500 m
+END OF BIOME
+```
 
 ### 4. Adicionando áreas (`area`)
 
+Para delimitar áreas e extensões de terra, você deve utilizar as estruturas definíveis existentes, como `REGIÃO (REGION)`, `BIOMA (BIOME)` ou `ILHA (ISLAND)`. Você pode controlar o tamanho dessas áreas usando a propriedade composta `TAMANHO (SIZE)`:
 
+```
+INÍCIO DE REGIÃO Vale_Misterioso
+    TAMANHO (
+        LARGURA: 100 km
+        ALTURA: 200 km
+    )
+FIM DE REGIÃO
+```
 
 ### 5. Aninhando definições
 
+O Maplexic permite que você declare definições dentro de outras definições `(definable_body: prop_decl | definable_decl)`. Isso significa que você pode colocar uma estrutura dentro de uma região, ou um bioma dentro de um continente, criando uma hierarquia complexa:
 
+```
+INÍCIO DE CONTINENTE Terra_Media
+    INÍCIO DE REGIÃO Gondor
+        INÍCIO DE ESTRUTURA Minas_Tirith
+            TAMANHO (
+                LARGURA: 500 m
+            )
+        FIM DE ESTRUTURA
+    FIM DE REGIÃO
+FIM DE CONTINENTE
+```
 
 ### 6. Cores
 
+Você pode aplicar cores a elementos usando a propriedade `COR (COLOR)`. A linguagem aceita dois formatos de cor: hexadecimal (iniciando com #) ou o formato rgb(...):
 
+```
+COR: #FF5733
+COLOR: rgb(255, 87, 51)
+```
 
 ### 7. Imagens
 
+Para referenciar arquivos externos, como imagens de textura ou ícones, utilize as propriedades `IMAGEM (IMG)` ou `ÍCONE (ICON)` combinadas com a função `url()`:
 
+```
+IMAGEM: url("caminho/para/imagem.png")
+TEXTURA: url("textura_terreno.jpg")
+```
+
+Essas propriedades também podem ser usadas como propriedades compostas com parênteses, caso você queira agrupar configurações de imagem.
 
 ### 8. Geração procedural
 
+Para mapas gerados automaticamente, o Maplexic suporta um bloco de propriedades através da palavra-chave `PROCEDURAL`. Dentro deste bloco, você pode usar parênteses para agrupar as configurações matemáticas de ruído e sementes:
 
+```
+PROCEDURAL (
+    SEMENTE: 42
+    INTERFERÊNCIA: 0.75
+    OCTAVES: 4
+    LACUNAS: 2.0
+)
+```
 
 ### 9. Comentários
 
+A linguagem suporta anotações que o compilador/parser irá ignorar.
 
+    Comentário de linha: Começa com `//` e vai até o fim da linha.
+
+    Comentário de bloco: Fica entre `/*` e `*/`, podendo ocupar múltiplas linhas.
+
+```
+// Este é um continente gerado aleatoriamente
+INÍCIO DE CONTINENTE Atlantida
+    /* 
+       Precisamos definir se
+       haverá rios e lagos aqui depois.
+    */
+    RIOS: FALSO
+FIM DE CONTINENTE
+```
 
 ### 10. Separação de elementos
 
+A organização do código em Maplexic depende de dois sinais principais:
 
+    Quebras de Linha (`NEWLINE`): Cada propriedade ou nova declaração deve ficar em sua própria linha.
+
+    Dois pontos (`:`): Usados para atribuir um valor a uma propriedade simples (ex: ESPAÇAMENTO: 10 px).
+
+    Parênteses `( )`: Usados para agrupar blocos de declarações em propriedades compostas, como TELA, TAMANHO, PROCEDURAL, etc. As propriedades dentro dos parênteses também devem ser separadas por quebras de linha.
 
 ## Gramática da Linguagem
 
