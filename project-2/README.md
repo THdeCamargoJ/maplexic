@@ -49,9 +49,7 @@ A linguagem permite alterar as propriedades de entidades já instanciadas de for
 (muda 'atributo do objeto 'id-objeto no mapa 'id-mapa para novo-valor)
 
 ## Notebook
-
-> Coloque aqui o link para o notebook que implementa a linguagem.
-
+(https://github.com/THdeCamargoJ/maplexic/blob/projeto-2/project-2/maplexic-lisplike.ipynb)
 ## Exemplos Selecionados
 
 Cria mapas:
