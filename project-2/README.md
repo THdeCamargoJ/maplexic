@@ -66,7 +66,6 @@ Adiciona objetos:
 (adiciona 'castelo ao 'mapa-principal em '(100 100))
 (adiciona 'torre-mago ao 'mapa-principal em '(100 80))
 (adiciona 'estabulo-vazio ao 'mapa-principal em '(80 80))
-
 (newline)
 (display mapas)
 (newline)
