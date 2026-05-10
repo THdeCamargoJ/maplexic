@@ -9,6 +9,5 @@ Maplexic is a Domain Specific Language designed for map generation and developed
 | Nome                 | RA     |
 |----------------------|--------|
 | Gabriel Ribeiro      | 171851 |
-| Johatan              | 250502 |
-| Lucas Gabriel        | 183967 |
+| Johatan Lima         | 250502 |
 | T. H. de Camargo J.  | 206235 |
