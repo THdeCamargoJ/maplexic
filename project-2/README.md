@@ -4,9 +4,9 @@
 
 Contextualização: O Maplexic é uma DSL construída sobre o Scheme focada na criação, manipulação e gestão de mapas para jogos.
 
-Motivação: O desenvolvimento de mapas e a alocação de entidades em ambientes 2D frequentemente exigem conhecimentos mais técnicos. O Maplexic visa abstrair a complexidade do gerenciamento de estado das estruturas de dados, oferecendo uma sintaxe declarativa e próxima do português para o design de fases.
+Motivação: O desenvolvimento de mapas e a alocação de entidades em ambientes 2D geralmente exigem conhecimentos mais técnicos. O Maplexic visa abstrair a complexidade do gerenciamento de estado dessas estruturas, oferecendo uma sintaxe próxima do português para o design de fases sem muita dificuldade.
 
-Relevância: A linguagem facilita o trabalho de game designers e desenvolvedores permitindo uma prototipação ágil de cenários. Utilizando as macros do Schemes, o Maplexic cria uma interface limpa que pode futuramente se integrar a algoritmos complexos de geração procedural de terreno ou rotas.
+Relevância: A linguagem facilita o trabalho de game designers e desenvolvedores permitindo uma prototipação ágil de cenários. Utilizando as macros do Schemes, o Maplexic cria uma interface limpa que pode futuramente se integrar à geração procedural de mapas.
 ## Slides
 
 > Coloque aqui o link para o PDF da apresentação parcial.
@@ -53,6 +53,7 @@ A linguagem permite alterar as propriedades de entidades já instanciadas de for
 ## Exemplos Selecionados
 
 Cria mapas:
+
 `
 (display "Criando mapas…\n")
 (cria mapa 'mapa-principal com largura 1000 e altura 1000)
@@ -60,7 +61,9 @@ Cria mapas:
 (display mapas)
 (newline)
 `
+
 Adiciona objetos:
+
 `
 (display "Adicionando objetos ao mapa-principal")
 (adiciona 'castelo ao 'mapa-principal em '(100 100))
@@ -70,30 +73,32 @@ Adiciona objetos:
 (display mapas)
 (newline)
 `
+
 Localiza o mapa principal:
+
 `
 (display "Localizando o mapa-principal\n")
 (display (encontra mapa 'mapa-principal))
 (newline)
 `
+
 Localiza objeto:
+
 `
 (display "Localizando torre-mago no mapa-principal\n")
 (display (encontra objeto 'torre-mago no mapa 'mapa-principal))
 `
+
 Modifica nome do objeto:
+
 `
 (display "Modificando nome do obj-1 para obj-modificado\n")
 (muda 'nome do objeto 'estabulo-vazio no mapa 'mapa-principal para 'estabulo-cheio)
 (display (encontra objeto 'estabulo-cheio no mapa 'mapa-principal))
 `
-## Discussão
+## Discussão e Conclusão
 
-A ideia crua da DSL está funcionando, criar mapas e adicionar objetos a eles, os quais podem ser mudados. Apesar disso, falta definir algumas coisas para o rumo que a nossa linguagem tomará.
-
-## Conclusão
-
-O Scheme demonstrou grande flexibilidade para a criação da DSL. A separação entre a sintaxe e a semântica gerou uma arquitetura modular e robusta.
+A ideia crua da DSL está funcionando, criar mapas e adicionar objetos a eles, os quais podem ser mudados. Apesar disso, falta definir algumas coisas para o rumo que a nossa linguagem tomará, por exemplo, por que usar macros e não funções e também parar de usar listas, preferindo o record.
 
 # Trabalhos Futuros
 
