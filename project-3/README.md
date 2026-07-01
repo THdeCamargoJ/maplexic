@@ -9,7 +9,7 @@ Motivação: O desenvolvimento de mapas e a alocação de entidades em ambientes
 Relevância: A linguagem facilita o trabalho de game designers e desenvolvedores permitindo uma prototipação ágil de cenários. Utilizando as macros do Schemes, o Maplexic cria uma interface limpa que pode futuramente se integrar à geração procedural de mapas.
 ## Slides
 
-> Coloque aqui o link para o PDF da apresentação parcial.
+[SLIDES](https://github.com/THdeCamargoJ/maplexic/blob/main/project-3/Maplexic.pdf)
 
 ## Sintaxe da Linguagem na Forma de Tutorial
 
