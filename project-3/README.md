@@ -98,11 +98,12 @@ Modifica nome do objeto:
 `
 ## Discussão e Conclusão
 
-A ideia crua da DSL está funcionando, criar mapas e adicionar objetos a eles, os quais podem ser mudados. Apesar disso, falta definir algumas coisas para o rumo que a nossa linguagem tomará, por exemplo, por que usar macros e não funções e também parar de usar listas, preferindo o record.
+Com base no que desenvolvemos esse semestre, nossa linguagem passou por várias mudanças até chegarmos a essa versão final.
+A ideia original de usar geração procedural acabou por se tornar acima do nosso escopo, o que levou a mudança para uma linguagem mais geral de descrição de mapas. A nossa última adição nessa parte do projeto, o visualizador de mapas, reflete isso também.
 
 # Trabalhos Futuros
 
-Para o futuro, visamos implementar algo mais visual, com visualizações dos mapas criados, e talvez unir com a geração procedural de mapas.
+Futuramente, visando algo que possa ser usado mais praticamente na área de desenvolvimento de jogos, adicionar suporte à sprites é uma ideia que pensamos, além de adicionar movimentos aos objetos. Essas são medidas que deixariam a nossa linguagem mais dinâmica e mais adequada para o uso em gamedev.
 
 # Referências Bibliográficas
 
