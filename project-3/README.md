@@ -13,93 +13,80 @@ Relevância: A linguagem facilita o trabalho de game designers e desenvolvedores
 
 ## Sintaxe da Linguagem na Forma de Tutorial
 
-1. Criação de Mapas
-Para inicializar um novo mapa, definimos seu nome, largura e altura.
-`
-(cria mapa 'nome-do-mapa com largura 1000 e altura 1000)
-`
-2. Adição de Objetos
-Para popular o mapa, você pode inserir objetos passando o nome da entidade, o mapa de destino e a coordenada (X Y).
-`
-(adiciona 'nome-do-objeto ao 'nome-do-mapa em '(100 100))
-`
+1. Definição de Esquemas
+Antes de instanciar entidades, a linguagem permite definir a estrutura de dados que compõe mapas e objetos, informando os campos necessários.
+'
+(maplexic esquema mapa nome largura altura objetos)
+(maplexic esquema objeto nome posicao largura altura cor)
+'
+2. Criação de Entidades (Mapas e Objetos)
+Com os esquemas definidos, você pode criar instâncias passando os pares de campo e valor. O Maplexic suporta texturas nomeadas nativas (ex: floresta, agua, pedra) ou cores em hexadecimal.
+'
+(define mapa-principal (maplexic cria mapa nome mapa-principal largura 1000 altura 1000 objetos ()))
+
+(define castelo (maplexic cria objeto nome castelo posicao (650 600) largura 300 altura 300 cor pedra))
+'
 3. Buscas e Localizações
-É possível consultar o estado interno da engine buscando mapas inteiros ou objetos específicos dentro de um mapa.
-`
-(encontra mapa 'nome-do-mapa)
-(encontra objeto 'nome-do-objeto no mapa 'nome-do-mapa)
-`
-4. Modificação de Atributos
-A linguagem permite alterar as propriedades de entidades já instanciadas de forma dinâmica.
-`
-(muda 'nome do objeto 'objeto-antigo no mapa 'nome-do-mapa para 'objeto-novo)
-`
+É possível consultar o estado interno e os atributos de qualquer entidade registrada utilizando a palavra-chave encontra.
+'
+(maplexic encontra largura de mapa-principal)
+'
+5. Adição de Objetos ao Mapa
+Para popular o cenário, você insere uma lista de objetos diretamente em um mapa existente.
+'
+(set! mapa-principal (maplexic adiciona (castelo) em mapa-principal))
+'
+6. Visualização
+A DSL possui suporte nativo para renderizar o estado atual do mapa e seus objetos diretamente para um arquivo visual vetorial.
+'
+(mapa->svg mapa-principal "mapa-principal.svg")
+'
 ## Gramática da Linguagem
+A linguagem é controlada por uma macro principal (maplexic) que ramifica em quatro operações fundamentais:
 
-(cria mapa 'id-mapa com largura numero e altura numero)
+    (Definição de Esquema): (maplexic esquema <tipo> <campo1> <campo2> ...)
 
-(adiciona 'id-objeto ao 'id-mapa em '(x y))
+    (Criação de Entidade): (maplexic cria <tipo> <campo1> <valor1> <campo2> <valor2> ...)
 
-(encontra mapa 'id-mapa)
+    (Consulta de Atributo): (maplexic encontra <campo> de <registro>)
 
-(encontra objeto 'id-objeto no mapa 'id-mapa)
-
-(muda 'atributo do mapa 'id-mapa para novo-valor)
-
-(muda 'atributo do objeto 'id-objeto no mapa 'id-mapa para novo-valor)
+    (Composição de Mapa): (maplexic adiciona (<objeto1> <objeto2> ...) em <mapa>)
 
 ## Notebook
-(https://github.com/THdeCamargoJ/maplexic/blob/projeto-2/project-2/maplexic-lisplike.ipynb)
+(github.com/THdeCamargoJ/maplexic/blob/main/project-3/maplexic.ipynb)
 ## Exemplos Selecionados
+Criando estruturas e o mapa base:
+'
+(display "Criando mapa...\n")
+(maplexic esquema mapa nome largura altura objetos)
+(maplexic esquema objeto nome posicao largura altura cor)
 
-Cria mapas:
+(define mapa-principal (maplexic cria mapa nome mapa-principal largura 1000 altura 1000 objetos ()))
+'
+Criando objetos com texturas validadas:
+'
+(display "Criando objetos com texturas...\n")
+(define lago  (maplexic cria objeto nome lago posicao (250 650) largura 300 altura 250 cor agua))
+(define heroi (maplexic cria objeto nome heroi posicao (560 580) largura 30 altura 40 cor "#ff552f"))
+'
+Consultando valores:
+'
+(display "Lendo largura:\n")
+(display (maplexic encontra largura de mapa-principal))
+'
+Adicionando objetos e exportando para SVG:
+'
+(display "Adicionando objetos ao mapa-principal...\n")
+(set! mapa-principal
+  (maplexic adiciona (lago heroi) em mapa-principal))
 
-`
-(display "Criando mapas…\n")
-(cria mapa 'mapa-principal com largura 1000 e altura 1000)
-(cria mapa 'mapa-secundario com largura 2000 e altura 1200)
-(display mapas)
-(newline)
-`
-
-Adiciona objetos:
-
-`
-(display "Adicionando objetos ao mapa-principal")
-(adiciona 'castelo ao 'mapa-principal em '(100 100))
-(adiciona 'torre-mago ao 'mapa-principal em '(100 80))
-(adiciona 'estabulo-vazio ao 'mapa-principal em '(80 80))
-(newline)
-(display mapas)
-(newline)
-`
-
-Localiza o mapa principal:
-
-`
-(display "Localizando o mapa-principal\n")
-(display (encontra mapa 'mapa-principal))
-(newline)
-`
-
-Localiza objeto:
-
-`
-(display "Localizando torre-mago no mapa-principal\n")
-(display (encontra objeto 'torre-mago no mapa 'mapa-principal))
-`
-
-Modifica nome do objeto:
-
-`
-(display "Modificando nome do obj-1 para obj-modificado\n")
-(muda 'nome do objeto 'estabulo-vazio no mapa 'mapa-principal para 'estabulo-cheio)
-(display (encontra objeto 'estabulo-cheio no mapa 'mapa-principal))
-`
+(mapa->svg mapa-principal "mapa-principal.svg")
+'
 ## Discussão e Conclusão
 
-Com base no que desenvolvemos esse semestre, nossa linguagem passou por várias mudanças até chegarmos a essa versão final.
-A ideia original de usar geração procedural acabou por se tornar acima do nosso escopo, o que levou a mudança para uma linguagem mais geral de descrição de mapas. A nossa última adição nessa parte do projeto, o visualizador de mapas, reflete isso também.
+Com base no que desenvolvemos esse semestre, nossa linguagem passou por várias mudanças até chegarmos a essa versão final. A ideia original de usar geração procedural acabou se mostrando além do nosso escopo ideal, o que levou à mudança para uma linguagem mais generelizada para descrição de mapas.
+
+A escolha de utilizar macros no Scheme nos permitiu uma sintaxe customizada, limpa e com validações em tempo de expansão (como a verificação de propriedades como as cores). A nossa última adição nessa parte do projeto, o visualizador de mapas em SVG, reflete bem como essa estrutura de dados se tornou prática e as mudanças que fizemos. Com ele, podemos visualizar como os objetos ficariam dispostos no mapa, com algumas opções de customização de tamanho e cor, apesar de bem cruas por enquanto.
 
 # Trabalhos Futuros
 
