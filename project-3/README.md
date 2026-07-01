@@ -101,7 +101,7 @@ A escolha de utilizar macros no Scheme nos permitiu uma sintaxe customizada, lim
 
 # Trabalhos Futuros
 
-Futuramente, visando algo que possa ser usado mais praticamente na área de desenvolvimento de jogos, adicionar suporte à sprites é uma ideia que pensamos, além de adicionar movimentos aos objetos. Essas são medidas que deixariam a nossa linguagem mais dinâmica e mais adequada para o uso em gamedev.
+Futuramente, visando algo que possa ser usado mais praticamente na área de desenvolvimento de jogos, adicionar suporte à sprites é uma ideia que pensamos, além de adicionar movimentos aos objetos. Pensando também na nossa ideia original, retomar a geração procedural de mapas podia se tornar uma ferramenta poderosa para jogos desse tipo(Minecraft, Terraria etc.). Essas são medidas que deixariam a nossa linguagem mais dinâmica e mais adequada para o uso em gamedev. 
 
 # Referências Bibliográficas
 
