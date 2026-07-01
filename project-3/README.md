@@ -56,7 +56,9 @@ A linguagem é controlada por uma macro principal (maplexic) que ramifica em qua
     (Composição de Mapa): (maplexic adiciona (<objeto1> <objeto2> ...) em <mapa>)
 
 ## Notebook
-(github.com/THdeCamargoJ/maplexic/blob/main/project-3/maplexic.ipynb)
+
+[NOTEBOOK COM OS EXEMPLOS](https://github.com/THdeCamargoJ/maplexic/blob/main/project-3/maplexic.ipynb)
+
 ## Exemplos Selecionados
 
 Criando estruturas e o mapa base:
@@ -87,6 +89,10 @@ Adicionando objetos e exportando para SVG:
   (maplexic adiciona (lago heroi) em mapa-principal))
 (mapa->svg mapa-principal "mapa-principal.svg")
 `
+
+Exemplo de mapa criado pelo visualizador:
+
+![MAP](https://github.com/THdeCamargoJ/maplexic/blob/main/project-3/map.jpeg)
 ## Discussão e Conclusão
 
 Com base no que desenvolvemos esse semestre, nossa linguagem passou por várias mudanças até chegarmos a essa versão final. A ideia original de usar geração procedural acabou se mostrando além do nosso escopo ideal, o que levou à mudança para uma linguagem mais generelizada para descrição de mapas.
